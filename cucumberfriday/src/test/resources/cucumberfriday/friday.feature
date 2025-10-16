@@ -3,7 +3,7 @@ Feature: Friday
 
   Scenario Outline: Today is (or is not) Friday
     Given today is "<day>"
-    When I as whether it's Friday yet
+    When I ask whether it's Friday yet
     Then I should be told "<answer>"
 
   Examples:

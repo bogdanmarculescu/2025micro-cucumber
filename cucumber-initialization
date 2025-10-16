@@ -2,8 +2,8 @@ mvn archetype:generate                      \
    "-DarchetypeGroupId=io.cucumber"           \
    "-DarchetypeArtifactId=cucumber-archetype" \
    "-DarchetypeVersion=7.20.1"               \
-   "-DgroupId=cardscucumberapi"                  \
-   "-DartifactId=cardscucumberapi"               \
-   "-Dpackage=cardscucumberapi"                  \
+   "-DgroupId=thursdaydemo"                  \
+   "-DartifactId=thursdaydemo"               \
+   "-Dpackage=thursdaydemo"                  \
    "-Dversion=1.0.0-SNAPSHOT"                 \
    "-DinteractiveMode=false"

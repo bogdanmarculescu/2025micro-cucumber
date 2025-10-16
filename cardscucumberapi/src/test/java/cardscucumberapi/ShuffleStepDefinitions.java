@@ -1,6 +1,13 @@
 package cardscucumberapi;
 
+import cardscucumberapi.model.Card;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.en.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,9 +30,23 @@ public class ShuffleStepDefinitions {
             response = apiClient.getDeckResponse().getBody();
         }
     }
-    @Then("they get shuffled cards")
-    public void they_get_shuffled_cards() {
-        assertEquals("shuffled cards", response);
+    @Then("they get a {int} of shuffled cards")
+    public void they_get_shuffled_cards(int number) {
+        // check number of cards
+
+        ObjectMapper mapper = new ObjectMapper();
+        Map<Long, Card> cards = new HashMap<Long, Card>();
+
+        try {
+            cards = mapper.readValue(response,
+                    //new TypeReference<Map<Long, Card>>() {}
+                    Map.class
+                    );
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        assertEquals(number, cards.size());
     }
 
 }
