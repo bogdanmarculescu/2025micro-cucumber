@@ -5,9 +5,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.en.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,7 +19,7 @@ public class ShuffleStepDefinitions {
 
     private String username;
     private final APIClient apiClient = new APIClient();
-    private String response;
+    private HashMap<Long, Card> response;
 
     @Given("a new user {word}")
     public void a_new_user_bogdan(String word) {
@@ -27,26 +31,16 @@ public class ShuffleStepDefinitions {
         // I should call and endpoint
         if(endpoint.equals("deck")) {
             // someone?? calls "/api/deck"
-            response = apiClient.getDeckResponse().getBody();
+            response = apiClient.getDeckResponse();
         }
     }
     @Then("they get a {int} of shuffled cards")
     public void they_get_shuffled_cards(int number) {
-        // check number of cards
 
-        ObjectMapper mapper = new ObjectMapper();
-        Map<Long, Card> cards = new HashMap<Long, Card>();
+        assertEquals(number, response.size());
+        Set<Card> uniques = new HashSet<>(response.values());
+        assertEquals(response.size(), uniques.size());
 
-        try {
-            cards = mapper.readValue(response,
-                    //new TypeReference<Map<Long, Card>>() {}
-                    Map.class
-                    );
-
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        assertEquals(number, cards.size());
     }
 
 }
