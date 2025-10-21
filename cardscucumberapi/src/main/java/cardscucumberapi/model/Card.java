@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Bean;
 
 
 public class Card {
-    Long id;
-    Long value;
-    String filename;
-    String suite;
+    public Long id;
+    public Long value;
+    public String filename;
+    public String suite;
 }
