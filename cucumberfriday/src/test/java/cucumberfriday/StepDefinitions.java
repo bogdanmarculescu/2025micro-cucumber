@@ -22,17 +22,17 @@ public class StepDefinitions {
     public void theScenarioPasses() {
     }
 
-    @Given("today is {string}")
+    @Given("today is {word}")
     public void today_is(String today) {
         this.today = today;
     }
 
-    @When("I as whether it's Friday yet")
+    @When("I ask whether it's Friday yet")
     public void i_as_whether_it_s_friday_yet() {
         this.actualAnswer = well.isItFriday(today);
     }
 
-    @Then("I should be told {string}")
+    @Then("I should be told {word}")
     public void i_should_be_told(String expectedAnswer) {
         assertEquals(actualAnswer, expectedAnswer);
     }
