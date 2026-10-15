@@ -2,8 +2,8 @@ mvn archetype:generate                      \
    "-DarchetypeGroupId=io.cucumber"           \
    "-DarchetypeArtifactId=cucumber-archetype" \
    "-DarchetypeVersion=7.20.1"               \
-   "-DgroupId=thursdaydemo"                  \
-   "-DartifactId=thursdaydemo"               \
-   "-Dpackage=thursdaydemo"                  \
+   "-DgroupId=thursdaylive"                  \
+   "-DartifactId=thursdaylive"               \
+   "-Dpackage=thursdaylive"                  \
    "-Dversion=1.0.0-SNAPSHOT"                 \
    "-DinteractiveMode=false"

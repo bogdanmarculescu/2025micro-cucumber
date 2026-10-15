@@ -23,11 +23,28 @@ public class APIClient {
         HashMap<Long, Card> response= Objects
                 .requireNonNull(
                 restTemplate
-                        .exchange(BACKEND_HOST + "/api/deck",
+                        .exchange(BACKEND_HOST + "/api/deck/cards",
                                 HttpMethod.GET,
                                 null,
                                 new ParameterizedTypeReference<HashMap<Long, Card>>() {
                 }).getBody());
+
+        //HashMap res  = new RestTemplate().getForObject(BACKEND_HOST + "/api/deck", HashMap.class);
+        return response;
+    }
+
+    public HashMap<Long, Card> getDeckResponseCounted(int number) throws Exception{
+        //ResponseEntity<Map> response = new RestTemplate().getForEntity(BACKEND_HOST + "/api/deck", Map.class);
+
+        RestTemplate restTemplate = new RestTemplate();
+        HashMap<Long, Card> response= Objects
+                .requireNonNull(
+                        restTemplate
+                                .exchange(BACKEND_HOST + "/api/deck/cards/" + number,
+                                        HttpMethod.GET,
+                                        null,
+                                        new ParameterizedTypeReference<HashMap<Long, Card>>() {
+                                        }).getBody());
 
         //HashMap res  = new RestTemplate().getForObject(BACKEND_HOST + "/api/deck", HashMap.class);
         return response;
@@ -40,7 +57,7 @@ public class APIClient {
         List<Object> response= Objects
                 .requireNonNull(
                         restTemplate
-                                .exchange(BACKEND_HOST + "/api/resolver/outcomes",
+                                .exchange(BACKEND_HOST + "/api/resolver",
                                         HttpMethod.GET,
                                         null,
                                         new ParameterizedTypeReference<List<Object>>() {
